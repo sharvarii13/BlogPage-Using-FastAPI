@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aetheria | Modern Minimalist Blog</title>
+    <!-- Google Fonts: Outfit (Headings) and Inter (Body) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for Premium Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- Background Decorative Elements -->
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+
+    <!-- Navigation Header -->
+    <header class="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo" id="nav-logo-btn">
+                <i class="fa-solid fa-feather-pointed logo-icon"></i>
+                <span class="logo-text">Aetheria</span>
+            </a>
+            <nav class="nav-links">
+                <a href="#" class="nav-link active" id="nav-home"><i class="fa-solid fa-house"></i> Home</a>
+                <a href="#" class="nav-link hidden" id="nav-new-post"><i class="fa-solid fa-pen-to-square"></i> New Post</a>
+                <span class="nav-divider"></span>
+                <a href="#" class="nav-link" id="nav-login"><i class="fa-solid fa-right-to-bracket"></i> Login</a>
+                <a href="#" class="nav-link" id="nav-register"><i class="fa-solid fa-user-plus"></i> Register</a>
+                <div class="user-badge hidden" id="user-badge">
+                    <i class="fa-regular fa-circle-user"></i>
+                    <span id="username-display">Username</span>
+                    <a href="#" class="logout-btn" id="nav-logout" title="Log Out">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </a>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="main-content">
+        
+        <!-- ================= HOME VIEW ================= -->
+        <section id="home-view" class="view">
+            <!-- Hero Header -->
+            <div class="hero-section">
+                <h1 class="hero-title">Discover stories, thinking, and <span class="gradient-text">creative voices</span>.</h1>
+                <p class="hero-subtitle">Explore a collection of thoughts, tutorials, and inspiration written by the community.</p>
+                <div class="search-bar-container">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" id="post-search" placeholder="Search articles by title or content...">
+                </div>
+            </div>
+
+            <!-- Blog Posts Container -->
+            <div class="posts-grid-container">
+                <h2 class="section-title">Latest Articles</h2>
+                <div class="posts-grid" id="posts-list">
+                    <!-- Dynamic posts inserted here -->
+                    <div class="loading-state">
+                        <i class="fa-solid fa-circle-notch fa-spin loading-spinner"></i>
+                        <p>Fetching beautiful stories...</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= POST DETAIL VIEW ================= -->
+        <section id="post-detail-view" class="view hidden">
+            <div class="container-narrow">
+                <button class="btn-back" id="detail-back-btn">
+                    <i class="fa-solid fa-arrow-left-long"></i> Back to feed
+                </button>
+                <article class="full-post-card">
+                    <header class="post-header">
+                        <h1 class="post-detail-title" id="detail-title">Post Title</h1>
+                        <div class="post-meta">
+                            <span class="post-author"><i class="fa-regular fa-user"></i> By <span id="detail-author">Author</span></span>
+                            <span class="post-date"><i class="fa-regular fa-calendar"></i> <span id="detail-date">June 21, 2026</span></span>
+                        </div>
+                    </header>
+                    <div class="post-body-content" id="detail-content">
+                        <!-- Post content parsed here -->
+                    </div>
+                    <footer class="post-footer-actions hidden" id="detail-actions">
+                        <button class="btn btn-secondary" id="detail-edit-btn">
+                            <i class="fa-solid fa-pen"></i> Edit Article
+                        </button>
+                        <button class="btn btn-danger" id="detail-delete-btn">
+                            <i class="fa-solid fa-trash-can"></i> Delete
+                        </button>
+                    </footer>
+                </article>
+            </div>
+        </section>
+
+        <!-- ================= LOGIN VIEW ================= -->
+        <section id="login-view" class="view hidden">
+            <div class="container-card">
+                <div class="auth-card">
+                    <div class="auth-header">
+                        <h2>Welcome Back</h2>
+                        <p>Sign in to share your thoughts with the world.</p>
+                    </div>
+                    <form id="login-form" class="auth-form">
+                        <div class="form-group">
+                            <label for="login-username">Username</label>
+                            <div class="input-wrapper">
+                                <i class="fa-regular fa-user input-icon"></i>
+                                <input type="text" id="login-username" required placeholder="Enter username">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="login-password">Password</label>
+                            <div class="input-wrapper">
+                                <i class="fa-solid fa-lock input-icon"></i>
+                                <input type="password" id="login-password" required placeholder="Enter password">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">
+                            Sign In <i class="fa-solid fa-right-to-bracket"></i>
+                        </button>
+                    </form>
+                    <div class="auth-footer">
+                        <p>Don't have an account? <a href="#" id="link-to-register">Register here</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= REGISTER VIEW ================= -->
+        <section id="register-view" class="view hidden">
+            <div class="container-card">
+                <div class="auth-card">
+                    <div class="auth-header">
+                        <h2>Create Account</h2>
+                        <p>Join the community and start blogging today.</p>
+                    </div>
+                    <form id="register-form" class="auth-form">
+                        <div class="form-group">
+                            <label for="register-username">Username</label>
+                            <div class="input-wrapper">
+                                <i class="fa-regular fa-user input-icon"></i>
+                                <input type="text" id="register-username" required placeholder="Choose a username">
+                            </div>
+                            <span class="field-hint">Must be between 3 and 50 characters</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-password">Password</label>
+                            <div class="input-wrapper">
+                                <i class="fa-solid fa-lock input-icon"></i>
+                                <input type="password" id="register-password" required placeholder="Create password">
+                            </div>
+                            <span class="field-hint">Must be at least 6 characters</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="register-confirm-password">Confirm Password</label>
+                            <div class="input-wrapper">
+                                <i class="fa-solid fa-lock input-icon"></i>
+                                <input type="password" id="register-confirm-password" required placeholder="Confirm your password">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">
+                            Create Account <i class="fa-solid fa-user-plus"></i>
+                        </button>
+                    </form>
+                    <div class="auth-footer">
+                        <p>Already have an account? <a href="#" id="link-to-login">Sign in instead</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= POST FORM VIEW (CREATE / EDIT) ================= -->
+        <section id="post-form-view" class="view hidden">
+            <div class="container-narrow">
+                <div class="form-card">
+                    <h2 class="form-title" id="form-view-title">Write a New Story</h2>
+                    <form id="post-form">
+                        <input type="hidden" id="form-post-id">
+                        <div class="form-group">
+                            <label for="post-title">Article Title</label>
+                            <input type="text" id="post-title" required placeholder="Give your article a catchy title...">
+                        </div>
+                        <div class="form-group">
+                            <label for="post-content">Story Content</label>
+                            <textarea id="post-content" required rows="12" placeholder="Write your story using markdown or plain text..."></textarea>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary" id="form-cancel-btn">Cancel</button>
+                            <button type="submit" class="btn btn-primary" id="form-submit-btn">Publish Article</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2026 Aetheria. Built with FastAPI, SQLite, and Pure Design.</p>
+        </div>
+    </footer>
+
+    <!-- App JavaScript -->
+    <script src="/static/app.js"></script>
+</body>
+</html>
